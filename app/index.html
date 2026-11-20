@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vice Cover Studio — cover art maker</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><span class="brand-mark" aria-hidden="true">VC</span><span class="brand-name">VICE COVER STUDIO</span></div>
+  <p class="brand-sub">Your photos, a sunset poster, one PNG.</p>
+  <button id="export" type="button">Export PNG</button>
+</header>
+<main class="app">
+  <section class="controls" aria-label="Cover controls">
+    <div class="group">
+      <h2>Photos</h2>
+      <label class="file-label" for="photo">Upload photos
+        <input id="photo" type="file" accept="image/*" multiple>
+      </label>
+      <p class="note">Photos stay on your machine — they are read locally and never uploaded.</p>
+      <div class="sample-row">
+        <button type="button" data-sample="pier">Use sample: Pier</button>
+        <button type="button" data-sample="boulevard">Use sample: Boulevard</button>
+      </div>
+      <div id="strip" class="strip" aria-label="Loaded photos"></div>
+      <p id="photo-count" class="note">No photos yet — upload one or use a sample.</p>
+    </div>
+
+    <div class="group">
+      <h2>Layout</h2>
+      <div id="layout-picker" class="seg" role="group" aria-label="Panel layout"></div>
+      <h2>Post size</h2>
+      <div id="size-picker" class="seg seg-col" role="group" aria-label="Post size"></div>
+      <h2>Colour grade</h2>
+      <div id="grade-picker" class="seg" role="group" aria-label="Colour grade">
+        <button type="button" data-grade="sunset" aria-pressed="true">Sunset</button>
+        <button type="button" data-grade="neon" aria-pressed="false">Neon</button>
+      </div>
+    </div>
+
+    <div class="group">
+      <h2 id="panel-label">Panel 1 of 2</h2>
+      <p class="note">Click a panel in the preview to select it, then drag the photo to pan it.</p>
+      <label for="panel-photo">Photo in this panel</label>
+      <select id="panel-photo"></select>
+      <label for="zoom">Zoom <span id="zoom-val" class="val">1.00x</span></label>
+      <input id="zoom" type="range" min="1" max="3" step="0.01" value="1">
+      <label for="pos-x">Position X <span id="pos-x-val" class="val">0</span></label>
+      <input id="pos-x" type="range" min="-1" max="1" step="0.01" value="0">
+      <label for="pos-y">Position Y <span id="pos-y-val" class="val">0</span></label>
+      <input id="pos-y" type="range" min="-1" max="1" step="0.01" value="0">
+    </div>
+
+    <div class="group">
+      <h2>Caption</h2>
+      <label for="caption">Caption</label>
+      <input id="caption" type="text" maxlength="48" value="Sunset Heist" autocomplete="off">
+      <label for="caption-size">Letter size <span id="caption-size-val" class="val">Auto</span></label>
+      <input id="caption-size" type="range" min="0" max="220" step="1" value="0">
+      <label for="caption-y">Caption height <span id="caption-y-val" class="val">86%</span></label>
+      <input id="caption-y" type="range" min="0.1" max="0.97" step="0.01" value="0.86">
+      <span class="field-label">Caption colour</span>
+      <div id="swatches" class="swatches" role="group" aria-label="Caption colour"></div>
+      <label for="tagline">Tagline</label>
+      <input id="tagline" type="text" maxlength="48" value="VICE CITY • 2026" autocomplete="off">
+    </div>
+  </section>
+
+  <section class="stage" aria-label="Live preview">
+    <canvas id="cover" width="1080" height="1080" aria-label="Live cover preview"></canvas>
+    <p class="hint">Click a panel to select it &middot; drag the photo to pan &middot; Export downloads the PNG.</p>
+    <p id="status" role="status">Ready — upload photos or use a sample, then export.</p>
+  </section>
+</main>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
