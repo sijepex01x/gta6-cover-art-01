@@ -1,0 +1,10 @@
+{
+  "name": "gta6-cover-art-shots",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Renders the gta6-cover-art-01 screenshots with node-canvas from the app's own drawing code.",
+  "scripts": {
+    "shots": "node shots.mjs"
+  }
+}
